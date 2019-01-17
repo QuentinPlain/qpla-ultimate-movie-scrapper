@@ -1,0 +1,32 @@
+<!--
+  Generated template for the FavoritesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Favorites</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-card *ngIf="msg" style="word-break: break-all">
+    <ion-card-content>
+      {{msg}}
+    </ion-card-content>
+  </ion-card>
+  <ion-list *ngIf="favorites">
+    <ion-item *ngFor="let fav of favorites" class="favorite">
+      <button (click)="getDetail(fav.imdbID)" ion-button>
+        {{fav.Title}}
+      </button>
+      <button (click)="removeFavorite(fav)" ion-button>
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="exportFavorites('json')">JSON</button>
+  <button ion-button (click)="exportFavorites('csv')">CSV</button>
+  <br>
+  <button ion-button (click)="importFavorites()">Import your favorites</button>
+</ion-content>

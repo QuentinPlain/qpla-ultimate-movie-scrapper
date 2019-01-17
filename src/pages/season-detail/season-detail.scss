@@ -1,0 +1,18 @@
+page-season-detail {
+  ion-grid{
+    margin-top: 3em;
+  }
+
+  .toolbar-background{
+    background-color: #488aff;
+    color: white;
+}
+
+  .title > .toolbar-title, .bar-button{
+    color: white;
+  }
+
+  .heart-red{
+    color:red !important;
+  }
+}

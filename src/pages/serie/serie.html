@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Series
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="white" (click)="toggleSearchbar()">
+        <ion-icon name="arrow-round-up" *ngIf="enableSearchbar"></ion-icon>
+        <ion-icon name="search" *ngIf="!enableSearchbar"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-searchbar *ngIf="enableSearchbar"
+                   [showCancelButton]="true"
+                   [(ngModel)]="searchTerm"
+                   (ionInput)="onInput()"
+                   placeholder="Search series">
+    </ion-searchbar>
+    <span *ngIf="searchResult && searchResult !== '0'" ion-text color="secondary" class="searchRes">{{ searchResult}} series found</span>
+    <span *ngIf="searchResult === '0'" ion-text color="danger" class="searchRes">{{ searchResult}} series found</span>
+  <ion-grid *ngIf="series">
+    <ion-row>
+      <ion-col col-auto col-md-6 col-lg-6 *ngFor="let serie of series">
+        <ion-card>
+          <div class="card-header">
+            <ion-card-title>
+              {{serie.Title}}
+            </ion-card-title>
+          </div>
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <img src="{{serie.Poster}}" class="poster" (click)="itemTapped(serie)" *ngIf="serie.Poster != 'N/A' "/>
+                </ion-col>
+                <ion-col>
+                  <p>
+                    This {{serie.Type}} was released in  {{ serie.Year }}
+                  </p>
+                  <button (click)="itemTapped(serie)">More about</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-buttons *ngIf="all_series" text-center>
+    <button *ngIf="paginator || page_paginator !== '1' " ion-button (click)="getPrev()">
+      Prev
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button ion-button (click)="getNext()">
+      Next
+      <ion-icon name="arrow-forward"></ion-icon>
+    </button>
+
+  </ion-buttons>
+</ion-content>

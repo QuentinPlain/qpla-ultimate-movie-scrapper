@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="season">Season {{season.Season }} / {{season.totalSeasons }}</ion-title>
+    <ion-buttons end>
+      <button ion-button color="white" (click)="addFavorite()" *ngIf="!favorite">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+      <button ion-button class="heart-red" color="red" (click)="removeFavorite()" *ngIf="favorite">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid *ngIf="season">
+    <ion-row>
+      <ion-col col-12>
+        <b>{{season.Episodes.length}} episodes </b>
+        <ion-buttons>
+          <button ion-button *ngFor="let episode of season.Episodes" (click)="itemTapped(episode.Episode)">
+            {{episode.Episode}}
+          </button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

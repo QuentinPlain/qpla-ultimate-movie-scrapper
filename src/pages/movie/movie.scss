@@ -1,0 +1,57 @@
+page-movie {
+  
+  .toolbar, .toolbar-background{
+    background-color: #488aff;
+    color: white;
+}
+
+.title > .toolbar-title, .bar-button{
+  color: white;
+}
+
+  .searchRes {
+    position: absolute;
+    right: 4em;
+    top: 2.5em;
+  }
+
+  .ion-card-content {
+    padding: 0px;
+  }
+
+  @mixin dark-overlay {
+    &:after {
+      content: "";
+      width: 100%;
+      height: auto;
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+    }
+  }
+
+  // A CSS Gradient Overlay
+  .gradient-overlay {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    background-size: cover;
+    @include dark-overlay;
+  }
+
+  .gradient-overlay:after {
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 30%, rgba(130, 130, 130, 0.35) 59%, rgba(229, 229, 229, 0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 30%, rgba(130, 130, 130, 0.35) 59%, rgba(229, 229, 229, 0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.85) 30%, rgba(130, 130, 130, 0.35) 59%, rgba(229, 229, 229, 0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  }
+
+  .movie-title {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    top: 10%;
+  }
+}

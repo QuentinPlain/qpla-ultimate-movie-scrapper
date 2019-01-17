@@ -1,0 +1,68 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="serie">{{serie.Title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button color="white" (click)="addFavorite()" *ngIf="!favorite">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+      <button ion-button class="heart-red" (click)="removeFavorite()" *ngIf="favorite">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content *ngIf="serie">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-md-6 col-lg-6 col-12 *ngIf='serie.Poster !== "N/A"'>
+            <img alt="{{serie.Title}}" src="{{serie.Poster}}">
+          </ion-col>
+          <ion-col col-md-6 col-lg-6 col-12>
+            <p *ngIf='serie.Runtime && serie.Runtime !== "N/A"'><b>Duration :</b> {{serie.Runtime}}</p>
+            <p *ngIf='serie.Genre && serie.Genre !== "N/A"'><b>Genre :</b> {{serie.Genre}}</p>
+            <p *ngIf='serie.Country && serie.Country !== "N/A"'>
+              <b>Country :</b> {{serie.Country}}
+              <span *ngIf='serie.Language && serie.Language !== "N/A"'><b>Language :</b> {{serie.Language}}</span>
+            </p>
+            <p *ngIf='serie.DVD && serie.DVD !== "N/A"'><b>DVD Release:</b> {{serie.DVD}}</p>
+            <p *ngIf='serie.Rated && serie.Rated !== "N/A"'><b>Rated :</b> {{serie.Rated}}</p>
+            <p *ngIf='serie.imdbVotes && serie.serieimdbVotes !== "N/A"'><b>IMDB votes :</b> {{serie.imdbVotes}}
+              <span *ngIf='serie.imdbRating && serie.serieimdbRating !== "N/A"'><b>IMDB Rating :</b>
+                {{serie.imdbRating}} /
+                10 </span>
+            </p>
+            <p *ngIf='serie.Plot && serie.Plot !== "N/A"'><b>Plot: </b>
+              <br>
+              {{serie.Plot}}
+            </p>
+            <hr>
+            <p *ngIf='serie.Actors && serie.Actors !== "N/A"'><b>Actors :</b> {{serie.Actors}}</p>
+            <p *ngIf='serie.Director && serie.Director !== "N/A"'><b>Director :</b> {{serie.Director}}</p>
+            <p *ngIf='serie.Awards && serie.Awards !== "N/A"'><b>Awards :</b> {{serie.Awards}}</p>
+            <p *ngIf='serie.Production && serie.Production !== "N/A"'><b>Production :</b> {{serie.Production}}</p>
+            <p *ngIf='serie.Writer && serie.Writer !== "N/A"'><b>Writer :</b> {{serie.Writer}}</p>
+            <p *ngIf='serie.BoxOffice && serie.BoxOffice !== "N/A"'><b>BoxOffice :</b> {{serie.BoxOffice}}</p>
+            <p *ngIf='serie.Website && serie.Website !== "N/A"'>
+              <a href="{{serie.Website}}">
+                <b>Official :</b>
+                Website
+              </a>
+            </p>
+            <p *ngIf="serie.totalSeasons"><b>{{serie.totalSeasons}} seasons:</b></p>
+            <ion-buttons>
+              <button (click)="itemTapped(serie.imdbID, i+1)" *ngFor="let season of seasons; index as i"
+                      ion-button color="primary">
+                {{i + 1}}
+              </button>
+            </ion-buttons>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

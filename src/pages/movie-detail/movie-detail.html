@@ -1,0 +1,69 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="movie">{{movie.Title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button color="white" (click)="addFavorite()" *ngIf="!favorite">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+      <button ion-button class="heart-red" color="red" (click)="removeFavorite()" *ngIf="favorite">
+        <ion-icon name="heart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="movie">
+  <ion-card>
+    <ion-card-content *ngIf="movie">
+      <ion-grid style="display: table">
+        <ion-row>
+          <ion-col col-md-6 col-lg-6 col-12 *ngIf='poster' class="poster-col">
+            <img alt="{{movie.Title}}" src="{{poster}}">
+          </ion-col>
+          <ion-col col-md-6 col-lg-6 col-12 *ngIf='!poster && movie.Poster !== "N/A"' class="poster-col" text-center>
+            <img alt="{{movie.Title}}" src="{{movie.Poster}}">
+
+          </ion-col>
+          <button ion-button (click)="downloadPoster()">Download Poster</button>
+          <ion-col col-md-6 col-lg-6 col-12 class="data-col">
+            <p *ngIf='movie.Runtime && movie.Runtime !== "N/A"'><b>Duration :</b> {{movie.Runtime}}</p>
+            <p *ngIf='movie.Genre && movie.Genre !== "N/A"'><b>Genre :</b> {{movie.Genre}}</p>
+            <p *ngIf='movie.Country && movie.Country !== "N/A"'>
+              <b>Country :</b> {{movie.Country}}
+              <span *ngIf='movie.Language && movie.Language !== "N/A"'><b>Language :</b> {{movie.Language}}</span>
+            </p>
+            <p *ngIf='movie.DVD && movie.DVD !== "N/A"'><b>DVD Release:</b> {{movie.DVD}}</p>
+            <p *ngIf='movie.Rated && movie.Rated !== "N/A"'><b>Rated :</b> {{movie.Rated}}</p>
+            <p *ngIf='movie.imdbVotes && movie.movieimdbVotes !== "N/A"'><b>IMDB votes :</b> {{movie.imdbVotes}}
+              <span *ngIf='movie.imdbRating && movie.movieimdbRating !== "N/A"'><b>IMDB Rating :</b>
+                {{movie.imdbRating}} /
+                10 </span>
+            </p>
+            <p *ngIf='movie.Plot && movie.Plot !== "N/A"'><b>Plot: </b>
+              <br>
+              {{movie.Plot}}
+            </p>
+            <hr>
+            <p *ngIf='movie.Actors && movie.Actors !== "N/A"'><b>Actors :</b> {{movie.Actors}}</p>
+            <p *ngIf='movie.Director && movie.Director !== "N/A"'><b>Director :</b> {{movie.Director}}</p>
+            <p *ngIf='movie.Awards && movie.Awards !== "N/A"'><b>Awards :</b> {{movie.Awards}}</p>
+            <p *ngIf='movie.Production && movie.Production !== "N/A"'><b>Production :</b> {{movie.Production}}</p>
+            <p *ngIf='movie.Writer && movie.Writer !== "N/A"'><b>Writer :</b> {{movie.Writer}}</p>
+            <p *ngIf='movie.BoxOffice && movie.BoxOffice !== "N/A"'><b>BoxOffice :</b> {{movie.BoxOffice}}</p>
+            <p *ngIf='movie.Website && movie.Website !== "N/A"'>
+              <a href="{{movie.Website}}">
+                <b>Official :</b>
+                Website
+              </a>
+            </p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+  <script>
+    console.log("Hello");
+  </script>
+</ion-content>
+

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar color="white">
+    <ion-title color="white">
+      Movies
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button color="white" (click)="toggleSearchbar()">
+        <ion-icon name="arrow-round-up" *ngIf="enableSearchbar"></ion-icon>
+        <ion-icon name="search" *ngIf="!enableSearchbar"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-searchbar *ngIf="enableSearchbar"
+                 [showCancelButton]="true"
+                 [(ngModel)]="searchTerm"
+                 (ionInput)="onInput()"
+                 placeholder="Search a movie">
+  </ion-searchbar>
+  <span *ngIf="searchResult && searchResult !== '0' && enableSearchbar" ion-text color="secondary"
+        class="searchRes">{{ searchResult}}
+    movies found</span>
+  <span *ngIf="searchResult === '0' && enableSearchbar" ion-text color="danger" class="searchRes">{{ searchResult}}
+    movies found</span>
+  <ion-grid *ngIf="movies">
+    <ion-row>
+      <ion-col col-12 col-md-6 col-xl-4 *ngFor="let movie of movies">
+        <ion-card class="gradient-overlay movie-card" (click)="itemTapped(movie)"
+                  [style.background-image]="'url('+movie.Poster+')'" >
+          <ion-card-content>
+            <ion-icon *ngIf="favorites.indexOf(movie.imdbID) > -1" name="heart" color="danger"
+                      class="poster-icon"></ion-icon>
+            <h1 class="movie-title">{{movie.Title}}</h1>
+            <h3 class="movie-title">This {{movie.Type}} was released in  {{ movie.Year }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="getNext($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
